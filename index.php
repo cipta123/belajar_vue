@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="app">
-    {{ message }}
+        {{ message }}
     </div>
 
     <div id="app-2">
@@ -18,12 +18,24 @@
             to see my dynamically bound title!
         </span>
     </div>
-    
+
    <div id="app-3">
-    <span v-if="seen">Now you see me</span>
+        <span v-if="seen">Now you see me</span>
   </div>
 
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+            {{ todo.text }}
+            </li>
+        </ol>
+    </div>
 
+
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
 </body>
 
 <script>
@@ -45,6 +57,29 @@ var app3 = new Vue({
   el: '#app-3',
   data: {
     seen: true
+  }
+})
+
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
   }
 })
 
